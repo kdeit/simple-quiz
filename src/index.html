@@ -1,0 +1,187 @@
+<?
+  $imgIndex = '';
+  
+  if ($_GET && $_GET['answer']) {
+    $url = $_GET['answer'];
+    switch ($url) {
+      case 358:
+        $imgIndex = 0;
+        $urlParam = '?answer=358';
+        break;
+      case 1024:
+        $imgIndex = 1;
+        $urlParam = '?answer=1024';
+        break;
+      case 2111:
+        $imgIndex = 2;
+        $urlParam = '?answer=2111';
+        break;
+      case 35:
+        $imgIndex = 3;
+        $urlParam = '?answer=35';
+        break;
+      case 456:
+        $imgIndex = 4;
+        $urlParam = '?answer=456';
+        break;
+      case 888:
+        $imgIndex = 5;
+        $urlParam = '?answer=888';
+        break;
+      case 22:
+        $imgIndex = 6;
+        $urlParam = '?answer=22';
+        break;
+      default:
+        $urlParam = '';
+        break;
+    }
+  }
+  $fbImg = "fb" . $imgIndex . '.png';
+  $vkImg = "vk" . $imgIndex . '.png';
+  ?>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <title>Best title</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Best title" />
+    <meta property="og:description" content="Best description" />
+    <meta property="og:image:width" content="968" />
+    <meta property="og:image:height" content="504" />
+    <meta property="og:url" content="/<?= $urlParam ?>" />
+    <meta property="og:image" content="/share/<?= $fbImg ?>" />
+    <meta property="vk:image" content="/share/<?= $vkImg ?>" />
+    <script>
+      var root_url = "/web-font.css";
+      !(function() {
+        "use strict";
+        function a(a, b, c) {
+          a.addEventListener
+            ? a.addEventListener(b, c, !1)
+            : a.attachEvent && a.attachEvent("on" + b, c);
+        }
+
+        function b(a) {
+          return (
+            window.localStorage &&
+            localStorage.font_css_cache &&
+            localStorage.font_css_cache_file === a
+          );
+        }
+
+        function c() {
+          if (window.localStorage && window.XMLHttpRequest)
+            if (b(e)) d(localStorage.font_css_cache);
+            else {
+              var a = new XMLHttpRequest();
+              a.open("GET", e, !0),
+                (a.onreadystatechange = function() {
+                  4 === a.readyState &&
+                    (d(a.responseText),
+                    (localStorage.font_css_cache = a.responseText),
+                    (localStorage.font_css_cache_file = e));
+                }),
+                a.send();
+            }
+          else {
+            var c = document.createElement("link");
+            (c.href = e),
+              (c.rel = "stylesheet"),
+              (c.type = "text/css"),
+              document.getElementsByTagName("head")[0].appendChild(c),
+              (document.cookie = "font_css_cache");
+          }
+        }
+
+        function d(a) {
+          var b = document.createElement("style");
+          b.setAttribute("type", "text/css"),
+            b.styleSheet ? (b.styleSheet.cssText = a) : (b.innerHTML = a),
+            document.getElementsByTagName("head")[0].appendChild(b);
+        }
+
+        var e = root_url;
+        (window.localStorage && localStorage.font_css_cache) ||
+        document.cookie.indexOf("font_css_cache") > -1
+          ? c()
+          : a(window, "load", c);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="app" class="flex flex--d__column">
+      <div class="app__image d-none d-lg-block">
+        <div
+          class="back-img back-img_home"
+          v-if="$store.getters.index==0"
+        ></div>
+        <div
+          class="back-img back-img_question"
+          v-if="$store.getters.index>0 && $store.getters.index < 7"
+        ></div>
+        <div
+          class="back-img back-img_fail"
+          v-if="$store.getters.index==7 && $store.getters.rightAnswers <6"
+        ></div>
+        <div
+          class="back-img back-img_success"
+          v-if="$store.getters.index==7 && $store.getters.rightAnswers ==6 "
+        ></div>
+      </div>
+      <div class="container-fluid flex flex--d__column flex--j__space flex--1">
+        <header class="row flex--a__center p--t__3 p--b__3">
+          <div
+            class="col-6 col-sm-4 offset-sm-2 offset-lg-4 col-lg-2 offset-xl-5 "
+            v-bind:class="$store.getters.index==0 ?'offset-xxl-5 col-xxl-2' :'offset-xxl-5 col-xxl-2' "
+          >
+            <div class="logo-1 logo">
+              <a href="/" target="_blank"></a>
+            </div>
+          </div>
+
+          <div
+            class="col-6 col-sm-4 offset-sm-1 offset-lg-3 col-lg-2 offset-xl-2 offset-xxl-3 col-xxl-2"
+          >
+            <div class="logo-2 logo">
+              <a href="/" target="_blank"></a>
+            </div>
+          </div>
+        </header>
+
+        <main class="main">
+          <transition
+            v-on:before-enter="beforeEnter"
+            v-on:enter="enter"
+            v-on:leave="leave"
+            v-bind:css="false"
+          >
+            <screen1 v-if="$store.getters.index==0" v-bind:key="100"></screen1>
+            <screen2 v-if="$store.getters.index==1" v-bind:key="101"></screen2>
+            <screen3 v-if="$store.getters.index==2" v-bind:key="102"></screen3>
+            <screen4 v-if="$store.getters.index==3" v-bind:key="103"></screen4>
+            <screen5 v-if="$store.getters.index==4" v-bind:key="104"></screen5>
+            <screen6 v-if="$store.getters.index==5" v-bind:key="105"></screen6>
+            <screen7 v-if="$store.getters.index==6" v-bind:key="106"></screen7>
+            <screen8 v-if="$store.getters.index==7" v-bind:key="107"></screen8>
+          </transition>
+        </main>
+        <div class="row">
+          <footer
+            class="footer col-12 col-sm-8 offset-sm-2 offset-lg-4 col-lg-8 offset-xl-5 col-xl-7 offset-xxl-6 col-xxl-6 p--t__3 p--b__3"
+          >
+            <div class="p--l__2 p--r__2 footer__inner">
+              <pagination></pagination>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

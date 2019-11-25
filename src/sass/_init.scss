@@ -1,0 +1,113 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  @include t-reg;
+  position: relative;
+  color: $colorText;
+}
+
+#app {
+  background-image: linear-gradient(to bottom, #e46664, #f1263a);
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.app {
+  min-height: 100%;
+
+  &__image {
+    display: block;
+    position: relative;
+    padding: 0 !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 33.333333%;
+    height: 100%;
+  }
+}
+.back-img {
+  position: relative;
+  height: 100%;
+  background-size: auto 100%;
+  background-position: top right;
+  background-repeat: no-repeat;
+  @include transition;
+  &_home {
+    background-image: url("../static/img/cola-pic-main.png");
+  }
+  &_question {
+    background-image: url("../static/img/cola-pic-questions.png");
+  }
+  &_fail {
+    background-image: url("../static/img/cola-pic-badresult.png");
+  }
+  &_success {
+    background-image: url("../static/img/cola-pic-goodresult.png");
+  }
+}
+
+.logo {
+  position: relative;
+  a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+.logo-1 {
+  width: 124px;
+  height: 30px;
+  @include background-image(cchbc-logo);
+  @media all and (min-width: $showRightImage) {
+    width: 167px;
+    height: 40px;
+  }
+}
+
+.logo-2 {
+  width: 124px;
+  height: 30px;
+  @include background-image(rise-mtp-logo);
+  @media all and (min-width: $showRightImage) {
+    width: 176px;
+    height: 40px;
+  }
+}
+
+.w100 {
+  width: 100%;
+  min-width: 100%;
+}
+.main {
+  @include flex(1, 0, auto);
+  @include sizeByGridHor(margin-top, 2);
+  @include sizeByGridHor(padding-bottom, 2);
+  @media all and (min-height: 700px) {
+    margin-top: 10vh;
+  }
+}
+.footer {
+  display: block;
+  @include box-sizing;
+  &__inner {
+    @media all and (min-width: 992px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}

@@ -1,0 +1,17 @@
+//Baseline
+$showRightImage: 800px;
+$baseline: 10px;
+$textSize: 15px;
+$max-width: 1170px;
+//Colors
+$colorMain: #f1263a;
+$colorMainLigth: #e46664;
+$colorRight: #01cd44;
+$colorWrong: #ba0303;
+$colorText: #fff;
+$colorGrey: #9b9b9b;
+@import "mixins/columnMixins";
+@import "mixins/flexMixins";
+@import "mixins/mainMixins";
+@import "mixins/sizeMixins";
+@import "mixins/grid";

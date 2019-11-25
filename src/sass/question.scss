@@ -1,0 +1,262 @@
+//questions
+.qst {
+  &__main {
+    @include t-reg;
+    letter-spacing: 1.28px;
+  }
+  &__add-txt {
+    @include t-mini;
+    @include sizeByGridHor(padding-top, 2);
+    text-align: left;
+    @media all and (min-width: 992px) {
+      text-align: right;
+    }
+    p {
+      @include sizeByGridHor(padding-bottom, 1);
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+} //qst
+
+//Номер задания
+.num {
+  @include align-self(start);
+  letter-spacing: 1.44px;
+  &_right {
+    @media all and (min-width: 992px) {
+      text-align: right;
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 1.44px;
+    background: #fff;
+    color: $colorMain;
+    @include sizeByGridHor(padding-left, 0.5);
+    @include sizeByGridHor(padding-right, 0.5);
+  }
+  &__digit {
+    @include t-digit;
+    line-height: 1;
+    &_bold {
+      @include t-digit_bold;
+      letter-spacing: -1px;
+    }
+  }
+}
+.num-mob {
+  @include align-self(start);
+
+  &__title {
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 1.44px;
+    background: #fff;
+    color: $colorMain;
+  }
+  &__digit {
+    line-height: 1;
+    @include t-digit2;
+  }
+}
+
+.riddle {
+  display: block;
+  width: 100%;
+  &__txt {
+    @include t-reg;
+    letter-spacing: 1.28px;
+    p {
+      @include sizeByGridHor(padding-bottom, 2);
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &__var {
+    position: relative;
+    padding-left: 70px;
+    min-height: 55px;
+    @include flexbox;
+    @include align-items(center);
+    @include t-mini;
+    letter-spacing: 1px;
+    padding-left: 40px;
+    @media all and (min-width: 500px) {
+      letter-spacing: 2px;
+      padding-left: 55px;
+    }
+    @media all and (min-width: 1024px) {
+      letter-spacing: 2.5px;
+      padding-left: 70px;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      @include box-sizing;
+      border: 2px solid #fff;
+      content: "";
+      @include border-radius(50%);
+      @include transition;
+      @include transform(translateY(-50%));
+
+      @media all and (min-width: 500px) {
+        width: 40px;
+        height: 40px;
+      }
+      @media all and (min-width: 1024px) {
+        width: 56px;
+        height: 56px;
+      }
+    }
+    &:before {
+      background: #fff;
+
+      @include transform-origin(center, center);
+      @include transform(translateY(-50%) scale(0));
+    }
+    &:hover {
+      cursor: pointer;
+      &:after {
+        box-shadow: 0 13px 29px 0 rgba(0, 0, 0, 0.15);
+      }
+      &:before {
+        @include transform(translateY(-50%) scale(1));
+      }
+    }
+  }
+  &__answer {
+    box-shadow: 0 13px 29px 0 rgba(0, 0, 0, 0.15);
+    position: relative;
+    @include sizeByGridHor(padding-left, 2);
+    @include sizeByGridHor(padding-top, 2);
+    @include sizeByGridHor(padding-bottom, 2);
+    z-index: 1;
+    background: #fff;
+    max-width: 400px;
+
+    @media all and (min-width: 500px) {
+      @include sizeByGridHor(padding-left, 4.5);
+    }
+
+    &__wrapper {
+      @include sizeByGridHor(padding-left, 6);
+      @include sizeByGridHor(padding-right, 6);
+      @media all and (min-width: 500px) {
+        @include sizeByGridHor(padding-left, 8);
+        @include sizeByGridHor(padding-right, 8);
+      }
+      &_big {
+        @include sizeByGridHor(padding-left, 8);
+        @include sizeByGridHor(padding-right, 8);
+      }
+      &_min-padding {
+        @include sizeByGridHor(padding-left, 6);
+        @include sizeByGridHor(padding-right, 6);
+        @media all and (min-width: 500px) {
+          @include sizeByGridHor(padding-left, 4);
+          @include sizeByGridHor(padding-right, 4);
+        }
+        @media all and (min-width: 992px) {
+          @include sizeByGridHor(padding-left, 2.5);
+          @include sizeByGridHor(padding-right, 8.5);
+        }
+      }
+    }
+
+    &__round {
+      height: 100%;
+      width: auto !important;
+      background: #fff;
+      fill: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+      z-index: 0;
+      @include border-radius(50%);
+      @include box-sizing;
+      @include transform(translateX(-50%));
+      &_right {
+        left: auto;
+        right: 0;
+        @include transform(translateX(50%));
+      }
+    }
+    &_right {
+      color: $colorRight;
+    }
+    &_wrong {
+      color: $colorWrong;
+    }
+    &__txt {
+      background: #fff;
+      @include flex(1, 1, auto);
+      line-height: 1.1 !important;
+      z-index: 1;
+      @include sizeByGridHor(min-height, 8);
+      &_big {
+        margin-right: -30px;
+        margin-left: -20px;
+        padding-left: 0;
+        @media all and (min-width: 576px) {
+          margin-right: 0;
+          margin-left: 0;
+        }
+        @media all and (min-width: 992px) {
+          margin-right: -45px;
+        }
+      }
+    }
+    &__ico {
+      @include flex(1, 0, auto);
+      @include sizeByGridHor(width, 4);
+      @include sizeByGridHor(height, 4);
+      @include sizeByGridHor(flex-basis, 4);
+      @include border-radius(50%);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      @include transform(translateX(-50%) translateY(-50%));
+      z-index: 2;
+      @media all and (min-width: 992px) {
+        @include sizeByGridHor(width, 8);
+        @include sizeByGridHor(height, 8);
+        @include sizeByGridHor(flex-basis, 8);
+      }
+      &_big {
+        @include transform(translateX(-100%) translateY(-50%));
+        @media all and (min-width: 576px) {
+          @include transform(translateX(-50%) translateY(-50%));
+        }
+      }
+
+      &_right {
+        background-color: $colorRight;
+        @include background-image(path-6);
+        background-size: 17px auto;
+        @media all and (min-width: 992px) {
+          background-size: 34px auto;
+        }
+      }
+      &_wrong {
+        background-color: $colorWrong;
+        @include background-image(cross);
+        background-size: 15px auto;
+        @media all and (min-width: 992px) {
+          background-size: 31px auto;
+        }
+      }
+    }
+  }
+}

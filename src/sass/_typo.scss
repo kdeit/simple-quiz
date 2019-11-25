@@ -1,0 +1,179 @@
+/* Вся типографика сайта*/
+$fontSizeArray: $textSize $textSize $textSize * 0.9 $textSize * 0.9 $textSize * 0.85 $textSize * 0.85 $textSize * 0.8;
+$lineHeightArray: $textSize * 1.6 $textSize * 1.6 $textSize * 1.5 $textSize * 1.5 $textSize * 1.4 $textSize * 1.4
+  $textSize * 1.4;
+
+@mixin setResponsiveSize($xs, $sm, $md, $lg, $xl, $xxl, $xxxl) {
+  font-size: $xs;
+  @media all and (min-width: 576px) {
+    font-size: $sm;
+  }
+  @media all and (min-width: 768px) {
+    font-size: $md;
+  }
+  @media all and (min-width: 992px) {
+    font-size: $lg;
+  }
+  @media all and (min-width: 1100px) {
+    font-size: $xl;
+  }
+  @media all and (min-width: 1400px) {
+    font-size: $xxl;
+  }
+  @media all and (min-width: 1600px) {
+    font-size: $xxxl;
+  }
+}
+
+@mixin setResponsiveLineHeight($xs, $sm, $md, $lg, $xl, $xxl, $xxxl) {
+  line-height: $xs;
+  @media all and (min-width: 576px) {
+    line-height: $sm;
+  }
+  @media all and (min-width: 768px) {
+    line-height: $md;
+  }
+  @media all and (min-width: 992px) {
+    line-height: $lg;
+  }
+  @media all and (min-width: 1100px) {
+    line-height: $xl;
+  }
+  @media all and (min-width: 1400px) {
+    line-height: $xxl;
+  }
+  @media all and (min-width: 1600px) {
+    line-height: $xxxl;
+  }
+}
+
+@mixin fontSize($propName, $koef: 1) {
+  #{$propName}: nth($fontSizeArray, 1) * $koef;
+  @each $current-media-query in $media-query {
+    $i: index($media-query, $current-media-query);
+    @media (max-width: $current-media-query) {
+      #{$propName}: nth($fontSizeArray, $i + 1) * $koef;
+    }
+  }
+}
+
+@mixin lineHeight($propName, $koef: 1) {
+  #{$propName}: nth($lineHeightArray, 1) * $koef;
+  @each $current-media-query in $media-query {
+    $i: index($media-query, $current-media-query);
+    @media (max-width: $current-media-query) {
+      #{$propName}: nth($lineHeightArray, $i + 1) * $koef;
+    }
+  }
+}
+
+$fontSizeArray2: $textSize $textSize * 0.9 $textSize * 0.8 $textSize * 0.7 $textSize * 0.6 $textSize * 0.5 $textSize *
+  0.4;
+$lineHeightArray2: $textSize * 1.6 $textSize * 1.3 $textSize * 1.2 $textSize * 1.1 $textSize * 1 $textSize * 0.9
+  $textSize * 0.8;
+
+@mixin fontSize2($propName, $koef: 1) {
+  #{$propName}: nth($fontSizeArray2, 1) * $koef;
+  @each $current-media-query in $media-query {
+    $i: index($media-query, $current-media-query);
+    @media (max-width: $current-media-query) {
+      #{$propName}: nth($fontSizeArray2, $i + 1) * $koef;
+    }
+  }
+}
+
+@mixin lineHeight2($propName, $koef: 1) {
+  #{$propName}: nth($lineHeightArray2, 1) * $koef;
+  @each $current-media-query in $media-query {
+    $i: index($media-query, $current-media-query);
+    @media (max-width: $current-media-query) {
+      #{$propName}: nth($lineHeightArray2, $i + 1) * $koef;
+    }
+  }
+}
+
+$font-style-reg: "e_r", Verdana, sans-serif;
+$font-style-bold: "e_b", Verdana, sans-serif;
+
+//reg18
+@mixin t-reg() {
+  line-height: 1.4;
+  font-family: $font-style-reg;
+  @include setResponsiveSize(13px, 14px, 15px, 16px, 17px, 18px, 18px);
+  font-weight: normal;
+  strong,
+  b {
+    font-weight: bold;
+  }
+}
+.t-reg {
+  @include t-reg;
+}
+
+//reg 16
+@mixin t-mini() {
+  @include setResponsiveSize(13px, 14px, 14px, 15px, 15px, 16px, 16px);
+  letter-spacing: 1.15px;
+}
+
+@mixin t-head() {
+  font-family: $font-style-reg;
+  @include setResponsiveSize(16px, 24px, 30px, 32px, 34px, 36px, 40px);
+  line-height: 1.2;
+  font-weight: normal;
+}
+
+@mixin t-head-2() {
+  font-family: $font-style-reg;
+  @include setResponsiveSize(24px, 26px, 28px, 30px, 32px, 34px, 35px);
+  font-weight: normal;
+}
+
+@mixin t-digit() {
+  @include setResponsiveSize(60px, 65px, 70px, 75px, 80px, 85px, 90px);
+}
+@mixin t-digit_bold() {
+  @include t-digit;
+  font-family: $font-style-bold;
+}
+
+@mixin t-digit2() {
+  @include t-digit;
+  font-family: $font-style-reg;
+  @include setResponsiveSize(34px, 34px, 38px, 40px, 42px, 44px, 46px);
+}
+
+body,
+html {
+  @include t-reg;
+}
+.head {
+  max-width: 700px;
+  @include t-head;
+  letter-spacing: 2px;
+  br {
+    display: none;
+  }
+  @media all and (min-width: 1200px) {
+    br {
+      display: block;
+    }
+  }
+}
+
+.txt {
+  max-width: 600px;
+  @include t-reg;
+  letter-spacing: 1.3px;
+  color: #f8d1d2;
+  p {
+    @include sizeByGridHor(padding-bottom, 1);
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.t--a__right {
+  text-align: right;
+}
